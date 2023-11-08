@@ -1,0 +1,169 @@
+/* ESTILOS GENERALES */
+:root {
+  --primario: (29 98% 51%);
+  --secundario: (221 51% 16%);
+  --negro: (0 0 7%);
+  --blanco: (0 0 99%);
+  --gris: (0 0 90%)
+}
+
+/* COLORES A USAR:
+PRIMARIO: #FD7E07
+SECUNDARIO: #14213D
+RESALTO: A ESCOGER
+BLANCO: #FCFCFC
+NEGRO: #111111
+GRIS: #E5E5E5
+ */
+
+
+body {  
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color:#222
+  
+}
+
+main {
+margin-top: 80px;
+}
+
+p {margin-bottom: 1rem;
+}
+
+h1, h2, h3, h4, h5, H6 { /* AGREGO ESTILO A TODOS LOS H DE LA WEB */
+color: #444;
+margin: 3rem 0 1.38rem;
+font-family: 'Inter', sans-serif;
+font-weight: 400;
+line-height: 1.3;
+}
+
+h1 {
+margin-top: 0;
+font-size: 3.052rem;
+}
+
+h2 {font-size: 2.441rem;}
+
+h3 {font-size: 1.953rem;}
+
+h4 {font-size: 1.563rem;}
+
+h5 {font-size: 1.25rem;}
+
+small, .text_small {font-size: 0.8rem;}
+
+a, .m-color {color:#FD7E07} /* AGREGO COLOR A TODO LOS ENLACES DE LA WEB */
+
+
+/* TERMINAN LOS ESTILOS GENERALES */
+
+/* INICIO ESTILOS PARA CABECERA Y MENUS */
+
+header{
+  background-color: #88e90a;
+  padding: 32px 32px 0 32px;
+  border: 2px, solid, black;
+  
+}
+
+.menu {
+  display: flex;
+  align-items: flex-end;
+  margin: 16px;
+}
+
+.contenedor-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+.contenedor-menu-logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+.contenedor-menu .control {
+  display: flex;
+}
+
+
+
+ header h2 {
+ color: rgb(15, 106, 185);
+
+ }
+
+footer .logo img {
+  width: 32%;
+ }
+
+
+header nav li, nav a {
+  display: inline-block;
+  margin: auto;
+}
+
+.clean, a {
+  list-style: none;
+  text-decoration: none;
+}
+
+header nav a {
+  color: white;
+  margin-left: 16px;
+}
+
+
+
+.menu-secundario {
+  margin-left: 280px;
+  display: inline-block;
+}
+
+
+
+/* HASTA AQUÍ LOS ESTILOS CABECERA Y MENU */
+
+
+/* CLASES INTELIGENTES PARA REUTILIZAR LOS H Y NO UTILIZAR LA PROPIA ETIQUETA H */
+
+.h1 {
+  margin-top: 0;
+  font-size: 3.052rem;
+  }
+
+.h2 {font-size: 2.441rem;}
+
+.h3 {font-size: 1.953rem;}
+
+.h4 {font-size: 1.563rem;}
+
+.h5 {font-size: 1.25rem;}
+
+.h6 {font-size: 1rem;}
+
+
+/* ESTILOS PARA LAS CAJAS  */
+
+.box {
+  border: 2px solid #FD7E07;
+}
+
+/* ESTILOS PARA LAS POSICIONES */
+
+.relative {
+  position: relative;
+}
+
+.absolut {
+  position: absolute;
+}
+
+
+

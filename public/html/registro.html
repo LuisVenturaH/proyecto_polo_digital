@@ -4,8 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
+      <!--Mis hojas de estilo-->
+      <link rel="stylesheet" href="/css/style.css">
+      <link rel="stylesheet" href="/css/button.css"/>
+
 </head>
 <body>
+    <header>
+        <nav>
+         <ul  class="btn menu-principal header-style"> <!-- Menú principal 1 -->
+            <li><a href="/public/index.html">Inicio</a></li>
+            <li><a href="#">Clientes</a></li>
+           <li><a href="#">Mobiliario</a></li>
+           <li><a href="#">Inventario</a></li>
+           <li><a href="#">Eventos</a></li>
+           <li><a href="/public/html/login.html">Login</a></li>
+           <li><a href="/public/html/registro.html">Registro</a></li>
+         </ul>
+       </nav>
+   </header>
+
+   <main>
+    <form>
+        <input type="text" name="Nombre" id="nombre" placeholder="Nombre" required/>
+        <input type="text" name="Apellido" id="apellido" placeholder="Apellido"/>
+        <input type="tel" name="Telefono" id="telefono" placeholder="Teléfono"/>
+        <input type="email" name="Email" id="email" placeholder="Email" required/>
+    </form>
+   </main>
     
 </body>
 </html>

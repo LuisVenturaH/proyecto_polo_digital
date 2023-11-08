@@ -3,6 +3,7 @@ const mysql = require("mysql2");    // Esto es para acceder a la carpeta de mysq
 const app = express();
 
 app.use(express.static('public')); // Indicamos que usará archivos públicos, estáticos
+app.use(express.json());
 
 // Crear conexión MySQL
 const connection = mysql.createConnection({ // Esyto conecta la base de datos que tengamos creada en mysql
@@ -21,7 +22,8 @@ connection.connect(function(error) {
     console.log("Conectado a MySQL");
 });
 
-// Creamos un N Point para llamar los eventos
+// <<===== --------------------  INICIA Endpoint para INDEX ----------------------===>>>>>
+
 app.get('/carrusel', function(request, response) { 
     connection.query('select * from eventos', function(error, result, fields) {
         if (error) {
@@ -29,7 +31,7 @@ app.get('/carrusel', function(request, response) {
             return;
         }
 
-        let total = 3;
+        let total = request.query.total;
         let eventos = [];
 
         for (let i = 0; i < total; i++) {
@@ -39,7 +41,35 @@ app.get('/carrusel', function(request, response) {
     });
 });
 
-// Crear n point para login
+
+// ===>> Creamos Endpoint para llamar eventos de nuestra DB
+app.get('/eventos/:idEvento', function(request, response) {
+    connection.query(`select * from eventos where id = "${request.params.idEvento}"`, function(error, result, fields) {
+        if (error) {
+            response.status(400).send(`error ${error.message}`);
+            return;
+        }
+
+
+        console.log(request.params.idEvento);
+
+        // let idEvento = request.params.idEvento;
+       if (result.length == 0) {
+        response.send({});
+       } else {
+        response.send(result[0]);
+       }
+        
+    });
+    
+});
+// Termina Endpoint para llamar eventos <<===
+
+// <<===== --------------------  TERMINA Endpoint para INDEX ----------------------===>>>>>
+
+
+
+// Creamos Endpoint para login --------------------------------------------------------------------------------------------------------
 
 // Ejemplo como sale la URL en Query String: http://localhost:8000/login?email=luis@email.com&passawod=1234
 
@@ -57,8 +87,9 @@ app.get('/login', function(request, response) {
         }
     }) 
 })
+// Termina Endpoint para login ----------------------------------------------------------------------------------------------------------------
 
-// Crear n point para insertar nuevos registro 
+// Creamos Endpoint para registro ----------------------------------------------------===>>
 app.get('/registro', function(request, response) {
     connection.query('insert into usuarios values ()', function(error, result, fields) {
         if(error) {
@@ -69,8 +100,25 @@ app.get('/registro', function(request, response) {
     })
 })
 
+// Creamos nuevo Endponint para trabajar con BODY que es tipo POST
+
+app.post('/registro', function(request, response) {
+    let nombre = request.body.nombre;
+    let apellidos = request.body.apellidos;
+    let email = request.body.email;
+
+    console.log(request.body);
+
+    // Insert into empleados_clientes
+    // Insert into usuarios
+
+    response.send({message: "registro"});
+})
+
+// Termina Enpoint para registro -------------------------------------------------------===>>
 
 
-app.listen(8000, function() {       // Indicamos en qué puerto lo hemos creados
+// INICIA LA FUNCION PARA ARRANCAR MYSQL ===>>
+app.listen(8000, function() {       // Indicam en qué puerto lo hemos creados
     console.log('server up and running!!!')
 });
