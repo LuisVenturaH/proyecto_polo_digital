@@ -81,7 +81,6 @@ header {
   } 
 
   main ul a {
-    /* margin-top: 64px; */
     padding: 16px 32px;
     background-color: white;
     color: black;
@@ -118,7 +117,7 @@ header {
     }
 
     main form input {
-      margin-left: 40px;
+      
       padding: 12px 32px;
       border-radius: 8px;
     }
