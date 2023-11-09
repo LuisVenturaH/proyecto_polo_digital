@@ -1,169 +1,127 @@
-/* ESTILOS GENERALES */
-:root {
-  --primario: (29 98% 51%);
-  --secundario: (221 51% 16%);
-  --negro: (0 0 7%);
-  --blanco: (0 0 99%);
-  --gris: (0 0 90%)
+body {
+  background-color: rgb(0, 0, 0);
 }
 
-/* COLORES A USAR:
-PRIMARIO: #FD7E07
-SECUNDARIO: #14213D
-RESALTO: A ESCOGER
-BLANCO: #FCFCFC
-NEGRO: #111111
-GRIS: #E5E5E5
- */
-
-
-body {  
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  color:#222
-  
-}
-
-main {
-margin-top: 80px;
-}
-
-p {margin-bottom: 1rem;
-}
-
-h1, h2, h3, h4, h5, H6 { /* AGREGO ESTILO A TODOS LOS H DE LA WEB */
-color: #444;
-margin: 3rem 0 1.38rem;
-font-family: 'Inter', sans-serif;
-font-weight: 400;
-line-height: 1.3;
-}
-
-h1 {
-margin-top: 0;
-font-size: 3.052rem;
-}
-
-h2 {font-size: 2.441rem;}
-
-h3 {font-size: 1.953rem;}
-
-h4 {font-size: 1.563rem;}
-
-h5 {font-size: 1.25rem;}
-
-small, .text_small {font-size: 0.8rem;}
-
-a, .m-color {color:#FD7E07} /* AGREGO COLOR A TODO LOS ENLACES DE LA WEB */
-
-
-/* TERMINAN LOS ESTILOS GENERALES */
-
-/* INICIO ESTILOS PARA CABECERA Y MENUS */
-
-header{
-  background-color: #88e90a;
-  padding: 32px 32px 0 32px;
-  border: 2px, solid, black;
-  
-}
-
-.menu {
-  display: flex;
-  align-items: flex-end;
-  margin: 16px;
-}
-
-.contenedor-menu {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  
-}
-
-.contenedor-menu-logo {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  
-}
-
-.contenedor-menu .control {
-  display: flex;
-}
-
-
-
- header h2 {
- color: rgb(15, 106, 185);
-
- }
-
-footer .logo img {
-  width: 32%;
- }
-
-
-header nav li, nav a {
-  display: inline-block;
-  margin: auto;
-}
-
-.clean, a {
-  list-style: none;
-  text-decoration: none;
-}
-
-header nav a {
+h1, h2, h3, h4, p {
   color: white;
-  margin-left: 16px;
+  font-family: monospace;
+  text-transform: uppercase;
 }
 
-
-
-.menu-secundario {
-  margin-left: 280px;
-  display: inline-block;
+p {
+font-size: 16px;
 }
 
+.h2 {
+  font-size: 32px;
+  text-align: center;
+}
 
+ul, li, a {
+  font-family: monospace;
+  text-decoration: none;
+  color: white;
+  padding: none;
+  list-style: none;
+  font-size: 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
 
-/* HASTA AQUÍ LOS ESTILOS CABECERA Y MENU */
+}
 
+header {
+  color: white;
+  margin: auto;
+  width: 960px;
+  margin-top: 40px;
+}
 
-/* CLASES INTELIGENTES PARA REUTILIZAR LOS H Y NO UTILIZAR LA PROPIA ETIQUETA H */
-
-.h1 {
+  header h1 {
+  background-color: rgb(255, 255, 255);
+  padding: 16px 32px;
+  color: black;
+  font-size: 40px;
+  border-radius: 16px 16px 0px 0;
   margin-top: 0;
-  font-size: 3.052rem;
+
   }
 
-.h2 {font-size: 2.441rem;}
+  header .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: none;
+    gap: 32px;
+    border: 0 2px 2px 2px dashed white; 
+    border-radius: 16px;
+  }
 
-.h3 {font-size: 1.953rem;}
+  .btn, button {
+    font-family: monospace;
+    color: black;
+    display: flex;
+    justify-content:space-around;
+    padding: 16px 32px;
+    font-size: 16px;
+    font-weight: bold;
+    gap: 36px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
 
-.h4 {font-size: 1.563rem;}
+  main {
+    width: 1080px;
+    padding: 32px;
+    border: 1px solid white;
+    border-radius: 16px;
+    border-radius: 8px;
+    margin: auto;
+  
+  } 
 
-.h5 {font-size: 1.25rem;}
+  main ul a {
+    /* margin-top: 64px; */
+    padding: 16px 32px;
+    background-color: white;
+    color: black;
+  }
 
-.h6 {font-size: 1rem;}
+  footer {
+    color: white;
+    margin: auto;
+    width: 960px;
+    padding: 16px 32px;
 
+  }
 
-/* ESTILOS PARA LAS CAJAS  */
+  footer p {
+    font-family: monospace;
+    background-color: rgb(255, 255, 255);
+    padding: 24px 16px;
+    color: black;
+    font-size: 32px;
+    font-weight: 900;
+    border-radius: 0px 0px 16px 16px;
+    margin-bottom: 0;
+    text-align: center;
+      
+    }
 
-.box {
-  border: 2px solid #FD7E07;
-}
+    main form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 32px;
+      width: 100%;
+      margin-bottom: -40px;
+    }
 
-/* ESTILOS PARA LAS POSICIONES */
-
-.relative {
-  position: relative;
-}
-
-.absolut {
-  position: absolute;
-}
+    main form input {
+      margin-left: 40px;
+      padding: 12px 32px;
+      border-radius: 8px;
+    }
 
 
 

@@ -10,28 +10,43 @@
 
 </head>
 <body>
-    <header>
-        <nav>
-         <ul  class="btn menu-principal header-style"> <!-- Menú principal 1 -->
-            <li><a href="/public/index.html">Inicio</a></li>
-            <li><a href="#">Clientes</a></li>
-           <li><a href="#">Mobiliario</a></li>
-           <li><a href="#">Inventario</a></li>
-           <li><a href="#">Eventos</a></li>
-           <li><a href="/public/html/login.html">Login</a></li>
-           <li><a href="/public/html/registro.html">Registro</a></li>
-         </ul>
-       </nav>
-   </header>
+  <header>
+    <div><h1>Proyecto Polo Digital</h1></div>
+    <div class="flex">
+      <nav>
+        <ul>
+          <li><a href="/public/index.html">Inicio</a></li>
+          <li><a href="#">Clientes</a></li>
+          <li><a href="#">Mobiliario</a></li>
+          <li><a href="#">Inventario</a></li>
+          <li><a href="#">Eventos</a></li>
+        </ul>
+      </nav>
+      <div class="btn">
+        <div>
+          <a href="/public/html/login.html"><button>Login</button></a>
+        </div>
+        <div>
+          <a href="/public/html/registro.html"><button>Registro</button></a>
+        </div>
+      </div>
+    </div>
+  </header>
 
    <main>
+    <h2>Ingresa tus datos para registrate</h2>
     <form>
         <input type="text" name="Nombre" id="nombre" placeholder="Nombre" required/>
         <input type="text" name="Apellido" id="apellido" placeholder="Apellido"/>
-        <input type="tel" name="Telefono" id="telefono" placeholder="Teléfono"/>
+        <input type="number" name="Telefono" id="telefono" placeholder="Teléfono"/>
         <input type="email" name="Email" id="email" placeholder="Email" required/>
     </form>
    </main>
+   <footer>
+    <div>
+      <p>*** A quien pueda interesar ***</p>
+    </div>
+  </footer>
     
 </body>
 </html>
