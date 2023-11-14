@@ -14,7 +14,7 @@
     <div class="flex">
       <nav>
         <ul>
-          <li><a href="/public/index.html">Inicio</a></li>
+          <li><a href="http://localhost:8000/">Inicio</a></li>
           <li><a href="#">Clientes</a></li>
           <li><a href="#">Mobiliario</a></li>
           <li><a href="#">Inventario</a></li>
@@ -23,7 +23,7 @@
       </nav>
       <div class="btn">
         <div>
-          <a href="/public/html/login.html"><button>Login</button></a>
+          <a href="http://localhost:8000/html/login.html"><button>Login</button></a>
         </div>
         <div>
           <a href="/public/html/registro.html"><button>Registro</button></a>
@@ -34,14 +34,16 @@
     <main>
         <h2>Ingresa tus datos para acceder</h2>
         <form>
-            <input type="text" name="Usuario" id="Usuario" placeholder="Usuario"/>
+            <input type="text" name="Usuario" id="email" placeholder="Usuario"/>
             <input type="password" name="password" id="password" placeholder="Contraseña"/>
         </form>
+        <input type="submit" value="Registrate">
     </main>
     <footer>
         <div>
           <p>*** A quien pueda interesar ***</p>
         </div>
       </footer>
+      <script src="/js.login.js"></script>
 </body>
 </html>
