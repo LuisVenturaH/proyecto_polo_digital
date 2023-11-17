@@ -9,13 +9,13 @@ window.addEventListener("load", function(event) {
         const containerDiv = document.getElementById("container");
         containerDiv.innerHTML = "<ul>";
             for (let i = 0; i < json.length; i++) {
-                containerDiv.innerHTML += `<li><button onclick="carruselClick(${json[i].id})">${json[i].nombre}</button> 
+                containerDiv.innerHTML += `<li><button onclick="carruselClick(${json[i].id})">${json[i].nombre_evento}</button> 
                 <p> Haz clic para saber más <------------
                 Fecha inicio: ${json[i].fecha_inicio} Fecha final: ${json[i].fecha_final}</p></li>`;
             }
                 containerDiv += "</ul>";
 
-                if (json[0].nombre == "onclic") {
+                if (json[0].nombre_evento == "onclic") {
                     containerDiv.innerHTML += `<li>${json[0]} li>`
                 }
     }).catch(function(error){
@@ -30,8 +30,8 @@ function carruselClick(evento_id) {
     }).then(function(json) {
         const containerDiv = document.getElementById("container");
         containerDiv.innerHTML = 
-        `<img src="/img/${json.nombre}.jpg" width="500px"/>
-        <h1>Bienvenidos a  ${json.nombre} </h1>
+        `<img src="/img/${json.nombre_evento}.jpg" width="500px"/>
+        <h1>Bienvenidos a  ${json.nombre_evento} </h1>
         <h2>El mejor ${json.tipo} de España</h2>
         <h3>Ven el dia ${json.fecha_inicio} a disfrutar del mejor evento del año</h3>
         <button class="btn"><a href="http://localhost:8000">Volver</a></button>`; // Evento que regresa a la página inicial

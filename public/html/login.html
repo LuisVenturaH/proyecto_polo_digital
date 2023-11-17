@@ -15,7 +15,7 @@
       <nav>
         <ul>
           <li><a href="http://localhost:8000/">Inicio</a></li>
-          <li><a href="#">Clientes</a></li>
+          <li><a href="http://localhost:8000/html/clientes.html">Clientes</a></li>
           <li><a href="#">Mobiliario</a></li>
           <li><a href="#">Inventario</a></li>
           <li><a href="#">Eventos</a></li>
@@ -26,24 +26,24 @@
           <a href="http://localhost:8000/html/login.html"><button>Login</button></a>
         </div>
         <div>
-          <a href="/public/html/registro.html"><button>Registro</button></a>
+          <a href="http://localhost:8000/html/registro.html"><button>Registro</button></a>
         </div>
       </div>
     </div>
   </header>
     <main>
         <h2>Ingresa tus datos para acceder</h2>
-        <form>
-            <input type="text" name="Usuario" id="email" placeholder="Usuario"/>
+      
+            <input type="text" name="email" id="email" placeholder="Usuario"/>
             <input type="password" name="password" id="password" placeholder="Contraseña"/>
-        </form>
-        <input type="submit" value="Registrate">
+            <button onclick="login()">Registrate</button>
+        
     </main>
     <footer>
         <div>
           <p>*** A quien pueda interesar ***</p>
         </div>
       </footer>
-      <script src="/js.login.js"></script>
+      <script src="/js/login.js"></script>
 </body>
 </html>

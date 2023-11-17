@@ -33,8 +33,7 @@ function handleSQLError(response, error, result, callback) {
 /* <TERMINA FUNCIONES UTILIES <==== */
 
 
-// ===>> Creamos Endpoint para llamar eventos de nuestra DB
-// ===>> ENDPOINT PARA INDEX
+// **************************** APERTURA ENDPOINT PARA INDEX ***************************
 
 app.get(`/carrusel`, function(request, response) {
     connection.query("select * from eventos", function(error, result, fields){
@@ -68,13 +67,11 @@ app.get('/eventos/:idEvento', function(request, response) {
 
 
 
-// Creamos Endpoint para login --------------------------------------------------------------------------------------------------------
+// **************************** APERTURA ENDPOINT PARA LOGIN ***************************
 
-// Ejemplo como sale la URL en Query String: http://localhost:8000/login?email=luis@email.com&password=1234
-
-app.get('/login', function(request, response) {
-    const email = request.query.email;
-    const password = request.query.password;
+app.post('/login', function(request, response) {
+    const email = request.body.email;
+    const password = request.body.password;
     const modoNuevo = `select * from usuarios where email = "${email}" and password = "${password}"`;
 
     console.log(modoNuevo);
@@ -89,19 +86,18 @@ app.get('/login', function(request, response) {
             response.send({message: "Login correcto"});
         }
     })
-        
-    }) 
+ }) 
 })
-// Termina ENDPOINT LOGIN <<===-------------------------------------------------------
+// <<===== --------------------  TERMINA Endpoint para LOGIN ----------------------===>>>>>
 
-// Creamos ENDPOINT REGISTRO ----------------------------------------------------===>>
 
-// **************************** INICIO CODIGO CORREGIDO ***************************
+
+// **************************** APERTURA ENDPOINT PARA REGISTRO ***************************
 app.post('/registro', function (request, response) {
     let nombre = request.body.nombre;
     let apellidos = request.body.apellidos;
-    let usuario = request.body.usuariosId;
-    let cliente = request.body.clientesId;
+    let usuario_id = request.body.usuario_id;
+    let cliente_id = request.body.cliente_id;
     let telefono = request.body.telefono;
     let dni = request.body.dni;
     let email = request.body.email;
@@ -117,23 +113,22 @@ app.post('/registro', function (request, response) {
 
         console.log("Usuario insertado correctamente!!!!!");
 
-        // Seleccionar usuario
+    // Seleccionar usuario
         connection.query(`SELECT id FROM usuarios WHERE email = ?`, [email], function (error, result, fields) {
             if (error) {
                 console.error("Error al seleccionar usuario:", error);
                 response.status(500).send({ message: "Error al seleccionar usuario" });
                 return;
             }
-
-            let usuarioId = result[0].id;
+            usuario_id = result[0].id;
             console.log(result[0]);
 
-            // Enlazar empleados_clientes con usuarioId
-            connection.query(`INSERT INTO empleados_clientes (nombre, apellidos, usuarioId, clienteId, telefono, dni) 
-                              VALUES (?, ?, ?, ?, ?, ?)`, [nombre, apellidos, usuarioId, cliente, telefono, dni], function (error, result, fields) {
+    // Enlazar empleados_clientes con usuarioId
+            connection.query(`INSERT INTO empleados_clientes (nombre, apellidos, usuario_id, cliente_id, telefono, dni) 
+                              VALUES (?, ?, ?, ?, ?, ?)`, [nombre, apellidos, usuario_id, cliente_id, telefono, dni], function (error, result, fields) {
                 if (error) {
-                    console.error("Error al insertar empleado_cliente:", error);
-                    response.status(500).send({ message: "Error al registrar empleado_cliente" });
+                    console.error("Error al insertar empleados_clientes:", error);
+                    response.status(500).send({ message: "Error al registrar empleados_clientes" });
                     return;
                 }
 
@@ -142,13 +137,13 @@ app.post('/registro', function (request, response) {
         });
     });
 });
+// <<===== --------------------  TERMINA Endpoint para REGISTRO ----------------------===>>>>>
 
-// ********************* TERMINA CODIGO CORREGIDO *******************************
 
 
-// Termina ENDPOINT REGISTRO <<===---------------------------------------------------
 
-// ******* ==========>>>>> CIERRE ENDPOINT PARA LISTAR CLIENTES
+// **************************** APERTURA ENDPOINT PARA CLIENTES ***************************
+// Seleccionar clientes
 app.get("/clientes", function(request, response){
     connection.query(`SELECT * FROM clientes`, function(error, result, fields){
         handleSQLError(response, error, result, function(result){
@@ -162,10 +157,7 @@ app.get("/clientes", function(request, response){
     })
 })
 
-// ******* ==========>>>>> CIERRE ENDPOINT PARA LISTAR CLIENTES
-
-// ******* ==========>>>>> APERTURA ENDPOINT PARA MODIFICAR DATOS CLIENTES
-                    // ***** RECUERDA QUE CON APP.POST DEBES CAMBIAR EN THUNDER EL TIPO DE BUSQUEDA Y PONER POST
+// Modificar datos del cliente (usamos POST en vez de GET)
 app.post("/clientes/:id", function(request, response){
     let razonSocial = request.body.Razon_Social;
     let cif = request.body.cif;
@@ -184,74 +176,35 @@ app.post("/clientes/:id", function(request, response){
 
         response.status(200).send({ message: "Cliente actualizado" }); // El código 200 indica que ha funcionado todo ok
 
-        console.log("Usuario actualizado correctamente!!!!!");
+        console.log("Cliente actualizado correctamente!!!!!");
     })
 })
-// ******* ==========>>>>> CIERRE ENDPOINT PARA MODIFICAR CLIENTES
 
-// ******* ============>>>>>>>>>>>>> INSERTAR NUEVOS CLIENTES
+
+// Crear nuevos clientes
 app.post('/clientes', function (request, response) {
-    let nombre = request.body.nombre;
-    let apellidos = request.body.apellidos;
-    let usuario = request.body.usuariosId;
-    let cliente = request.body.clientesId;
-    let telefono = request.body.telefono;
-    let dni = request.body.dni;
-    let email = request.body.email;
-    let password = request.body.password;
-
-    // Insertar usuario ///******* ESTOY JAY QUE MODIFICARLO */
-    connection.query(`INSERT INTO clientes (email, password) VALUES (?, ?)`, [email, password], function (error, result, fields) {
+    const razon_social = request.body.razon_social;
+    const cif = request.body.cif;
+    const sector = request.body.sector;
+    const telefono = request.body.telefono;
+    const numero_empleados = request.body.numero_empleados;
+    
+    connection.query(`INSERT INTO clientes (razon_social, cif, sector, telefono, numero_empleados) VALUES (?, ?, ?, ?, ?)`, 
+    [razon_social, cif, sector, telefono, numero_empleados], function (error, result, fields) {
         if (error) {
-            console.error("Error al insertar usuario:", error);
-            response.status(500).send({ message: "Error al registrar usuario" }); // status(500) es un error interno del servidor
+            console.error("Error al insertar cliente", error);
+            response.status(500).send({ message: "Error al registrar cliente" }); // status(500) es un error interno del servidor
             return;
         }
 
-        console.log("Usuario insertado correctamente!!!!!");
-
-        // Seleccionar usuario
-        connection.query(`SELECT id FROM usuarios WHERE email = ?`, [email], function (error, result, fields) {
-            if (error) {
-                console.error("Error al seleccionar usuario:", error);
-                response.status(500).send({ message: "Error al seleccionar usuario" });
-                return;
-            }
-
-            let usuarioId = result[0].id;
-            console.log(result[0]);
-
-            // Enlazar empleados_clientes con usuarioId
-            connection.query(`INSERT INTO empleados_clientes (nombre, apellidos, usuarioId, clienteId, telefono, dni) 
-                              VALUES (?, ?, ?, ?, ?, ?)`, [nombre, apellidos, usuarioId, cliente, telefono, dni], function (error, result, fields) {
-                if (error) {
-                    console.error("Error al insertar empleado_cliente:", error);
-                    response.status(500).send({ message: "Error al registrar empleado_cliente" });
-                    return;
-                }
-
-                response.status(200).send({ message: "Registro exitoso" }); // El código 200 indica que ha funcionado todo ok
-            });
-        });
+        console.log("cliente insertado");
+        
     });
-});   //    AQUI TERMINA EL CODIGO QUE HAY QUE MODIFICAR
+});   
+// <<===== --------------------  TERMINA Endpoint para CLIENTES ----------------------===>>>>>
 
-// app.get("/clientes", function(request, response){
-//     console.log("Insertar clientes")
-// })
 
-// Obtiene datos clientes con el id en :id
-// app.get("/clientes/:id", function(request, response){
-//     console.log("Obtiene datos clientes con el id en :id")
-// })
-
-// Termina ENDPOINT REGISTRO <<===---------------------------------------------------
-
-// INICIA LA FUNCION PARA ARRANCAR MYSQL ===>>
+// <<===== --------------------  TERMINA FUNCION ARRANQUE MYSQL ----------------------===>>>>>
 app.listen(8000, function() {       // Indicamos en qué puerto lo hemos creados
     console.log('server up and running!!!')
 });
-
-// Listado de clientes. Con query.
-// Formulario editar
-// Formulario crear

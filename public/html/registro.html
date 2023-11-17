@@ -12,8 +12,7 @@
           margin: auto;}
         main form { 
          align-items: stretch;
-    
-          }
+              }
 
       </style>
 
@@ -24,8 +23,8 @@
     <div class="flex">
       <nav>
         <ul>
-          <li><a href="/public/index.html">Inicio</a></li>
-          <li><a href="#">Clientes</a></li>
+          <li><a href="http://localhost:8000/">Inicio</a></li>
+          <li><a href="http://localhost:8000/html/clientes.html">Clientes</a></li>
           <li><a href="#">Mobiliario</a></li>
           <li><a href="#">Inventario</a></li>
           <li><a href="#">Eventos</a></li>
@@ -33,28 +32,39 @@
       </nav>
       <div class="btn">
         <div>
-          <a href="/public/html/login.html"><button>Login</button></a>
+          <a href="http://localhost:8000/html/login.html"><button>Login</button></a>
         </div>
         <div>
-          <a href="/public/html/registro.html"><button>Registro</button></a>
+          <a href="http://localhost:8000/html/registro.html"><button>Registro</button></a>
         </div>
       </div>
     </div>
   </header>
 
    <main>
-    <h2>Ingresa tus datos para registrate</h2>
-    <form>
-        <input type="text" name="Nombre" id="nombre" placeholder="Nombre" required/>
-        <input type="text" name="Apellido" id="apellido" placeholder="Apellido"/>
-        <input type="number" name="Telefono" id="telefono" placeholder="Teléfono"/>
-        <input type="email" name="Email" id="email" placeholder="Email" required/>
-    </form>
-   </main>
+    <h2>Ingresa tus datos para registrarte</h2>
+        <input type="text" name="nombre" id="nombre" placeholder="Nombre" required/>
+        <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos" required/>
+        <input type="text" name="dni" id="dni" placeholder="Introduce tu DNI" required/>
+        <input type="number" name="telefono" id="telefono" placeholder="Teléfono" required/>
+        <p>Empresa a la que perteneces</p>
+        <select id="cliente_id" name="cliente_id">
+          <option value="1" selected>Releevant</option>
+          <option value="2">La 42</option>
+          <option value="3">Baby Doll</option>
+          <option value="4">Pa Ramon Picture</option>
+        </select>
+        
+        <input type="email" name="email" id="email" placeholder="Email" required/>
+        <input type="password" name="password" id="password" placeholder="password" required/>
+        <input type="password" name="repetir_password" id="repetir_password" placeholder="Repite el password" required/>
+        <button onclick="registro()">Registrate</button>
+    </main>
    <footer>
     <div>
       <p>*** A quien pueda interesar ***</p>
     </div>
+    <script src="/js/registro.js"></script>
   </footer>
     
 </body>

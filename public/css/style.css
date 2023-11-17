@@ -8,6 +8,10 @@ h1, h2, h3, h4, p {
   /* text-transform: uppercase; */
 }
 
+input {
+  font-family: monospace;
+}
+
 p {
 font-size: 16px;
 }
@@ -93,6 +97,41 @@ header {
     color: black;
   }
 
+  main input  {
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 4px;
+    background-color: white;
+    color: black;
+    margin-bottom:16px;
+    font-family: monospace;
+  }
+
+  main select  {
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 4px;
+    background-color: white;
+    color: rgb(111, 111, 111);
+    margin-bottom:16px;
+    font-family: monospace;
+  }
+
+  main form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    width: 100%;
+    margin-bottom: -40px;
+  }
+
+  main form input {
+    
+    padding: 12px 32px;
+    border-radius: 8px;
+  }
+
   footer {
     color: white;
     margin: auto;
@@ -114,20 +153,7 @@ header {
       
     }
 
-    main form {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 32px;
-      width: 100%;
-      margin-bottom: -40px;
-    }
 
-    main form input {
-      
-      padding: 12px 32px;
-      border-radius: 8px;
-    }
 
 
 

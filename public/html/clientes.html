@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+      <!--Mis hojas de estilo-->
+      <link rel="stylesheet" href="/css/style.css">
+      <style>
+            main {
+                display: flex;
+                gap: 32px;
+              }
+                
+            main h2 {
+                background-color: white;
+                color: black;
+                padding: 16px;
+            }
+            main h3{
+                padding: 4px 0 8px 32px;  
+            }
+            main .contenedor_1_clientes {
+                border: 1px solid white;
+                padding: 16px;
+                width: 100%;
+                border-radius: 4px;
+            }
+            main .contenedor_2_clientes {
+                border: 1px solid white;
+                padding: 16px;
+                border-radius: 4px;
+            }
+        </style>
+
+</head>
+<body>
+  <header>
+    <div><h1>Proyecto Polo Digital</h1></div>
+    <div class="flex">
+      <nav>
+        <ul>
+          <li><a href="http://localhost:8000/">Inicio</a></li>
+          <li><a href="#">Mobiliario</a></li>
+          <li><a href="#">Inventario</a></li>
+          <li><a href="#">Eventos</a></li>
+        </ul>
+      </nav>
+      <div class="btn">
+        <div>
+          <a href="http://localhost:8000/html/login.html"><button>Login</button></a>
+        </div>
+        <div>
+          <a href="http://localhost:8000/html/registro.html"><button>Registro</button></a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+      <div class="contenedor_1_clientes">
+        <h1>Listado clientes del POLO DIGITAL</h1>
+      
+            <div id="container_clientes">
+              <!-- <ul>
+                <li><a href="#">Evento UNO</a></li>
+              </ul> -->
+            </div>
+      </div>
+
+      <div class="contenedor_2_clientes">
+        <h2>REGISTRO DE NUEVOS CLIENTES</h2>
+        <h3>Ingresa los datos para registrar un nuevo cliente del Polo Digital</h3>
+            <input type="text" name="razon_social" id="razon_social" placeholder="Razón Social" required/>
+            <input type="text" name="cif" id="cif" placeholder="Introduce el CIF" required/>
+            <input type="text" name="sector" id="sector" placeholder="Sector" required/>
+            <input type="number" name="telefono" id="telefono" placeholder="Teléfono" required/>
+            <input type="number" name="numero_empleados" id="numero_empleados" placeholder="numero_empleados" required/>
+            <button onclick="registro_clientes()">Crear cliente</button>
+      </div>
+  </main>
+   <footer>
+    <div>
+      <p>*** A quien pueda interesar ***</p>
+    </div>
+    <script src="/js/clientes.js"></script>
+  </footer>
+    
+</body>
+</html>
