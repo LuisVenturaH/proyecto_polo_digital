@@ -13,40 +13,28 @@
                 color: black;
                 padding: 16px;
             }
-            main h3{
-                padding: 4px 0 8px 32px;  
-            }
           
             .mainflex{
               display: flex;
-              flex-direction: row-reverse;
+              flex-direction: column;
               flex-wrap: wrap;
-              align-items: flex-end;
+              align-items: center;
               justify-content: center;
               gap: 32px;
               border: 1px solid white;  
               border-radius: 4px;          
             }
-            h2 .contenedor_2_clientes {
-              margin-bottom: 24px;
-            }
+         
             .contenedor_1_clientes {
               display: flex;
               flex-direction: column;
               border: 1px solid white;
               padding: 16px;
               gap: 8px;
+              margin-bottom: 16px;
+              width: 60%;
             }
-           .contenedor_2_clientes {
-              border: 1px solid white;
-              padding: 16px;
-              width: 100%;
-              padding: 36px 64px;
-            }
-            main img {
-              display: flex;
-              margin: auto;
-              }
+      
         </style>
 
 </head>
@@ -75,28 +63,26 @@
 
   <main>
     <div class="mainflex">
-        <div>
-          <h2>REGISTRO DE NUEVOS CLIENTES</h2>
-          <h3>Ingresa los datos para registrar un nuevo cliente del Polo Digital</h3>
+          <h2>MODIFICAR CLIENTES EXISTENTES</h2>
+          <h3>Ingresa los datos para modificar el cliente</h3>
             <div  class="contenedor_1_clientes">
-                  <input type="text" name="razon_social" id="razon_social" placeholder="Razón Social" required/>
+              <select id="cliente_id" name="cliente_id">
+                <option selected>Selecciona el cliente</option>
+                <option value="1">Releevant</option>
+                <option value="2">La 42</option>
+                <option value="3">Baby Doll</option>
+                <option value="4">Pa Ramon Picture</option>
+                <option value="5">La Premier Film</option>
+                <option value="6">Campero Games</option>
+                <option value="7">Killbug Studio</option>
+                <option value="12">Krill Audio</option>          
+              </select>
                   <input type="text" name="cif" id="cif" placeholder="Introduce el CIF" required/>
                   <input type="text" name="sector" id="sector" placeholder="Sector" required/>
                   <input type="number" name="telefono" id="telefono" placeholder="Teléfono" required/>
                   <input type="number" name="numero_empleados" id="numero_empleados" placeholder="numero_empleados" required/>
-                  <button onclick="registro_nuevos_clientes()">Crear cliente</button>
-            </div>
-        </div>
-
-        
-        <div class="contenedor_2_clientes">
-          <h1>Clientes del POLO DIGITAL</h1>
-          <div id="container_clientes">
-                <!-- <ul>
-                  <li><a href="#">Evento UNO</a></li>
-                </ul> -->
-          </div>
-        </div>   
+                  <button onclick="obtener_id_cliente() ">Modificar cliente</button>
+            </div> 
     </div>
   </main>
    <footer>

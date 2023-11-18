@@ -5,10 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Polo Digital</title>
     <link rel="stylesheet" href="/css/style.css"/>
+    <style>
+      .mainflex  {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      }
+    </style>
   </head>
   <body>
     <header>
-      <div><h1>Proyecto Polo Digital</h1></div>
+      <div><img src="/img/logo_polo_digital.png" width="0%"></div>
       <div class="flex">
         <nav>
           <ul>
@@ -30,13 +38,11 @@
     </header>
 
     <main>
-      <h2 class="h2">EVENTOS</h2>
+      <h2>EVENTOS</h2>
     
-      <div id="container">
+      <div id="container" class="mainflex">
         <!-- <ul>
           <li><a href="#">Evento UNO</a></li>
-          <li><a href="#">Evento DOS</a></li>
-          <li><a href="#">Evento TRES</a></li>
         </ul> -->
       </div>
     </main>
@@ -49,20 +55,3 @@
     <script src="/js/index.js"></script>
   </body>
 </html>
-
-<!-- Index
-
-- Menu (clientes, mobiliario, inventario, eventos, login/registro) HECHO
-- Listado / carrusel de eventos
-- Footer
-
-Login / Registro
-
-- Formulario de login
-- Formulario de registro
-
-Secciones Clientes, mobiliario, inventario y eventos
-
-- Listado
-- Formulario editar 
-- Formulario crear -->

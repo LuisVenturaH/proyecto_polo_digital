@@ -10,8 +10,7 @@ window.addEventListener("load", function(event) {
         containerDiv.innerHTML = "<ul>";
             for (let i = 0; i < json.length; i++) {
                 containerDiv.innerHTML += `<li><button onclick="carruselClick(${json[i].id})">${json[i].nombre_evento}</button> 
-                <p> Haz clic para saber más <------------
-                Fecha inicio: ${json[i].fecha_inicio} Fecha final: ${json[i].fecha_final}</p></li>`;
+                <p>Fecha inicio: ${json[i].fecha_inicio} Fecha final: ${json[i].fecha_final}</p></li>`;
             }
                 containerDiv += "</ul>";
 

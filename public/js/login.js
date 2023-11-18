@@ -10,6 +10,7 @@ function login() {
     headers: {
         "Content-Type": "application/json"
     },
+    
     body: JSON.stringify({email: email, password: password})
     }).then(function(response){
         return response.json()
