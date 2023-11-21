@@ -1,5 +1,7 @@
 const host = "http://localhost:8000";
 
+// FUNCION PARA REGISTRAR NUEVOS CLIENTES.
+
 function registro_nuevos_clientes() {
     const razon_social = document.getElementById("razon_social").value;
     const cif = document.getElementById("cif").value;
@@ -28,24 +30,28 @@ function registro_nuevos_clientes() {
 }
 window.addEventListener("load", function(event){
 
+    // CREA LISTADO DE CLIENTES Y LO ENSERTA EN EL DOM PARTIENDO DE LA APP
+ 
     fetch(`${host}/clientes`)
     .then(function(response){
         return response.json();
     }).then(function(json){
         const container_clientesDiv = document.getElementById("container_clientes");
-        container_clientesDiv.innerHTML = "ul";
+        container_clientesDiv.innerHTML = "<ul>";
         for (let i = 0; i < json.length; i++) {
             container_clientesDiv.innerHTML += 
-            `<div class="mainflex">
+            `
+            <div class="mainflex">
+            <div id="insertar_cliente_modificar"><a href="http://localhost:8000/html/modificar_cliente.html">Editar cliente</a></button></div>
             <img src="/img/${json[i].razon_social}.png" width="160px"/>
                 <div> 
-                    <h2>Razón Social: <strong></strong> ${json[i].razon_social}</h2> 
-                    <h3>CIF: ${json[i].cif}</h3> 
-                    <h3>Teléfono: ${json[i].telefono}</h3> 
-                    <h3>Sector: ${json[i].sector}</h3>
+                    <h2>Razón Social: <span class="bold">${json[i].razon_social}</span></h2> 
+                    <h4>CIF: ${json[i].cif}</h4> 
+                    <h4>Teléfono: ${json[i].telefono}</h4> 
+                    <h4>Sector: ${json[i].sector}</h4>
                 </div>
-            </div>`
-             
+               
+            </div>`     
         }
         container_clientesDiv += "</ul>";
 

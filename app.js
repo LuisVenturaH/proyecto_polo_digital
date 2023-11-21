@@ -68,7 +68,6 @@ app.get('/eventos/:idEvento', function(request, response) {
 
 
 // **************************** APERTURA ENDPOINT PARA LOGIN ***************************
-
 app.post('/login', function(request, response) {
     const email = request.body.email;
     const password = request.body.password;
@@ -143,7 +142,7 @@ app.post('/registro', function (request, response) {
 
 
 // **************************** APERTURA ENDPOINT PARA CLIENTES ***************************
-// Seleccionar clientes
+// Crea listado de clientes
 app.get("/clientes", function(request, response){
     connection.query(`SELECT * FROM clientes`, function(error, result, fields){
         handleSQLError(response, error, result, function(result){
@@ -151,30 +150,60 @@ app.get("/clientes", function(request, response){
 
             for (let i=0; i < result.length; i++ ) {
                 clientes[i] = result[i];
+                console.log(result[i].id)
             }
+            
             response.send(clientes);
         })
     })
 })
 
-// Modificar datos del cliente (usamos POST en vez de GET)
-app.post("/clientes/:id", function(request, response){
-    let razonSocial = request.body.Razon_Social;
-    let cif = request.body.cif;
-    let sector =  request.body.Sector;
-    let telefono = request.body.telefono;
-    let empleados = request.body.Numero_empleados;
-    let clienteId = request.params.id;
+app.get('/clientes/:idcliente', function(request, response){
+    const  idcliente = request.params.idcliente;
+    connection.query(`SELECT * FROM clientes WHERE id = "${idcliente}"`, function(error, result, fields){
+        handleSQLError(response, error, result, function(result){
+            if(result.length == 0){
+                response.send({});
+            } else {    
+                response.send(result[0]);
+            }
+        })
+    })
+} )
 
-    connection.query(`UPDATE clientes SET Razon_Social = "${razonSocial}", CIF = "${cif}", Sector = "${sector}", telefono = "${telefono}", Numero_empleados = "${empleados}" 
-    WHERE id = ${clienteId}`,  function(error, result, fields){
+
+
+// Modificar datos del cliente (usamos PUT en vez de GET) 
+app.get('/cliente/:idcliente', function(request, response){
+    const  idcliente = request.params.idcliente;
+    connection.query(`SELECT * FROM clientes WHERE id = "${idcliente}"`, function(error, result, fields){
+        handleSQLError(response, error, result, function(result){
+            if(result.length == 0){
+                response.send({});
+            } else {    
+                response.send(result[0]);
+            }
+        })
+    })
+} )
+
+app.put("/modificar_cliente/:idclientes", function(request, response){
+    const idClientes = request.params.id;
+    const razon_social = request.body.razon_social;
+    const cif = request.body.cif;
+    const sector =  request.body.sector;
+    const telefono = request.body.telefono;
+    const empleados = request.body.numero_empleados;
+   
+    connection.query(`(UPDATE clientes SET (id, razon_social, cif, sector, telefono, numero_empleados)
+    WHERE (?, ?, ?, ?, ?, ?)` [idClientes, razon_social, cif, sector, telefono, empleados], function(error, result, fields){
         if (error) {
             console.error("Error al modificar cliente:", error);
-            response.status(500).send({ message: "Error al modificar" });
+            response.status(500).send({ message: "Error al modificar cliente" });
             return;
         }
 
-        response.status(200).send({ message: "Cliente actualizado" }); // El código 200 indica que ha funcionado todo ok
+        response.status(200).send({ message: "Cliente actualizado" });
 
         console.log("Cliente actualizado correctamente!!!!!");
     })
@@ -202,6 +231,26 @@ app.post('/clientes', function (request, response) {
     });
 });   
 // <<===== --------------------  TERMINA Endpoint para CLIENTES ----------------------===>>>>>
+
+// <<===== --------------------  INICIA Endpoint para TODOS LOS EVENTOS ----------------------===>>>>>
+
+
+app.get(`/todos_eventos`, function(request, response) {
+    connection.query("SELECT * FROM eventos", function(error, result, fields){
+        handleSQLError(response, error, result, function(result){
+            // let total = request.query.total;
+            let todos_eventos = [];
+
+            for (let i=0; i < result.length; i++ ) {
+                todos_eventos[i] = result[i];
+            }
+            response.send(todos_eventos);
+        })
+    })
+})
+
+
+// <<===== --------------------  TERMINA Endpoint para TODOS LOS EVENTOS ----------------------===>>>>>
 
 
 // <<===== --------------------  TERMINA FUNCION ARRANQUE MYSQL ----------------------===>>>>>

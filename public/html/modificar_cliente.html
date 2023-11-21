@@ -45,9 +45,10 @@
       <nav>
         <ul>
           <li><a href="http://localhost:8000/">Inicio</a></li>
+          <li><a href="http://localhost:8000/html/clientes.html">Clientes</a></li>
           <li><a href="#">Mobiliario</a></li>
           <li><a href="#">Inventario</a></li>
-          <li><a href="#">Eventos</a></li>
+          <li><a href="http://localhost:8000/html/eventos.html">Eventos</a></li>
         </ul>
       </nav>
       <div class="btn">
@@ -66,7 +67,9 @@
           <h2>MODIFICAR CLIENTES EXISTENTES</h2>
           <h3>Ingresa los datos para modificar el cliente</h3>
             <div  class="contenedor_1_clientes">
-              <select id="cliente_id" name="cliente_id">
+              <select onchange="insertar_datos_clientes()" id="selector" name="selector">
+                <!-- BUSCAR LA FUNCION ONCHARGE
+                RECUERDA PASAR TODO AL ENDPOINT DE MODIFICAR CLIENTE -->
                 <option selected>Selecciona el cliente</option>
                 <option value="1">Releevant</option>
                 <option value="2">La 42</option>
@@ -75,13 +78,14 @@
                 <option value="5">La Premier Film</option>
                 <option value="6">Campero Games</option>
                 <option value="7">Killbug Studio</option>
-                <option value="12">Krill Audio</option>          
+                <option value="12">Krill Audio</option>   
+                <option value="14">Malaga Film Office</option>        
               </select>
                   <input type="text" name="cif" id="cif" placeholder="Introduce el CIF" required/>
                   <input type="text" name="sector" id="sector" placeholder="Sector" required/>
                   <input type="number" name="telefono" id="telefono" placeholder="Teléfono" required/>
                   <input type="number" name="numero_empleados" id="numero_empleados" placeholder="numero_empleados" required/>
-                  <button onclick="obtener_id_cliente() ">Modificar cliente</button>
+                  <button onclick="modificar_cliente()">Modificar cliente</button>
             </div> 
     </div>
   </main>
@@ -89,7 +93,7 @@
     <div>
       <p>*** A quien pueda interesar ***</p>
     </div>
-    <script src="/js/clientes.js"></script>
+    <script src="/js/modificar_cliente.js"></script>
   </footer>
     
 </body>
