@@ -24,7 +24,11 @@ function registro_nuevos_clientes() {
         "Content-Type": "application/json"
     },
     
-    body: JSON.stringify({razon_social: razon_social, cif: cif, sector: sector, telefono: telefono, numero_empleados: numero_empleados})
+    body: JSON.stringify({
+        razon_social: razon_social, 
+        cif: cif, sector: sector, 
+        telefono: telefono, 
+        numero_empleados: numero_empleados})
     })
  }
 }

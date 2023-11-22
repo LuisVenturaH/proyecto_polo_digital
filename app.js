@@ -187,7 +187,8 @@ app.get('/cliente/:idcliente', function(request, response){
     })
 } )
 
-app.put("/modificar_cliente/:idclientes", function(request, response){
+// ENDPOINT para modificar cliente
+app.put("/modificar_cliente", function(request, response){
     const idClientes = request.params.id;
     const razon_social = request.body.razon_social;
     const cif = request.body.cif;
