@@ -1,5 +1,3 @@
-//const { response } = require("express");
-
 const host = "http://localhost:8000";
 
 // FUNCION PARA COMPLETAR DATOS DE CLIENTES AUTOMATICAMENTE AL SELECCIONAR UNO DE ELLOS.
@@ -30,34 +28,45 @@ function insertar_datos_clientes() {
 
 // FUNCION PARA MODIFICAR CLIENTES 
 function modificar_cliente() {
-    const cif = document.getElementById("cif").value 
-    const sector = document.getElementById("sector").value
-    const telefono = document.getElementById("telefono").value 
-    const numero_empleados = document.getElementById("numero_empleados").value
+    const id = document.getElementById("selector").value;
+    const cif = document.getElementById("cif").value;
+    const sector = document.getElementById("sector").value;
+    const telefono = document.getElementById("telefono").value;
+    const numero_empleados = document.getElementById("numero_empleados").value;
 
     console.log(cif, sector, telefono, numero_empleados);
 
     if (cif === "" || sector === "" || telefono === "" || numero_empleados === "") {
         alert("Has dejado uno o varios de los campos en blanco. Completa la información.");
-    } else { alert ("Cliente modificado correctamente");
-    window.location.href = "http://localhost:8000/html/modificar_cliente.html";
-    }
-
-        fetch(`${host}/modificar_cliente`, {
+    } 
+    else { 
+           fetch(`${host}/modificar_cliente`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
 
             body: JSON.stringify({
+                id: id,
                 cif: cif,
                 sector: sector,
                 telefono: telefono,
                 numero_empleados: numero_empleados,
-            })
+            }),
         })
+        .then(response => response.json())
+        .then(json=> {
+            alert("Cliente modificado correctamente");
+            window.location.href = "http://localhost:8000/html/modificar_cliente.html";
+        })
+        .catch(error =>{
+            console.log(error);
+            alert("Error al modificar el cliente. Por favor, intentelo de nuevo");
+        });
     }
-            // .then((response) => response.json())
+}     
+
+// .then((response) => response.json())
             // .then((json) => {
             //     console.log(json);
             //     alert(json.message);
