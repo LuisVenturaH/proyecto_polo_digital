@@ -189,16 +189,15 @@ app.get('/cliente/:idcliente', function(request, response){
 
 // ENDPOINT para modificar cliente
 app.put("/modificar_cliente", function(request, response){
-    const id = request.params.id;
-    // const razon_social = request.body.razon_social;
+    const idClientes = request.params.id;
+    const razon_social = request.body.razon_social;
     const cif = request.body.cif;
     const sector =  request.body.sector;
     const telefono = request.body.telefono;
     const empleados = request.body.numero_empleados;
-
-    const sql = "UPDATE clientes SET cif = ?, sector = ?, telefono = ?, numero_empleados = ? WHERE id = ?";
    
-    connection.query(sql, [cif, sector, telefono, empleados, id], function(error, result, fields){
+    connection.query(`(UPDATE clientes SET (id, razon_social, cif, sector, telefono, numero_empleados)
+    WHERE (?, ?, ?, ?, ?, ?)` [idClientes, razon_social, cif, sector, telefono, empleados], function(error, result, fields){
         if (error) {
             console.error("Error al modificar cliente:", error);
             response.status(500).send({ message: "Error al modificar cliente" });
@@ -208,8 +207,8 @@ app.put("/modificar_cliente", function(request, response){
         response.status(200).send({ message: "Cliente actualizado" });
 
         console.log("Cliente actualizado correctamente!!!!!");
-    });
-});
+    })
+})
 
 
 // Crear nuevos clientes
@@ -219,9 +218,9 @@ app.post('/clientes', function (request, response) {
     const sector = request.body.sector;
     const telefono = request.body.telefono;
     const numero_empleados = request.body.numero_empleados;
-    const sql = "INSERT INTO clientes (razon_social, cif, sector, telefono, numero_empleados) VALUE (?, ?, ?, ?, ?)";
     
-    connection.query(sql, [razon_social, cif, sector, telefono, numero_empleados], function (error, result, fields) {
+    connection.query(`INSERT INTO clientes (razon_social, cif, sector, telefono, numero_empleados) VALUES (?, ?, ?, ?, ?)`, 
+    [razon_social, cif, sector, telefono, numero_empleados], function (error, result, fields) {
         if (error) {
             console.error("Error al insertar cliente", error);
             response.status(500).send({ message: "Error al registrar cliente" }); // status(500) es un error interno del servidor
@@ -229,7 +228,6 @@ app.post('/clientes', function (request, response) {
         }
 
         console.log("cliente insertado");
-        response.status(200).send({message: "Cliente registrado"});
         
     });
 });   

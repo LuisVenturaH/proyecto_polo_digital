@@ -11,12 +11,12 @@ function registro_nuevos_clientes() {
 
     console.log(razon_social, cif, sector, telefono, numero_empleados); 
 
-    if (razon_social === "" || cif === "" || sector === "" || telefono === "" || numero_empleados === "") {
-        alert ("Has dejado uno o varios de los campos en blanco. Completa la informacion")
+    if (razon_social == "" || cif == "" || sector == "" || telefono == "" || numero_empleados == "") {
+        alert ("Has dejado uno o varios de los campos en blanco. Completa a informacion")
     }
     else { 
         alert ("Cliente registrado correctamente");
-        window.location.href = "http://localhost:8000/";
+        window.location.href = "http://localhost:8000/html/index.html";
 
     fetch(`${host}/clientes`, {
     method: "POST",
@@ -26,17 +26,16 @@ function registro_nuevos_clientes() {
     
     body: JSON.stringify({
         razon_social: razon_social, 
-        cif: cif, 
-        sector: sector, 
+        cif: cif, sector: sector, 
         telefono: telefono, 
         numero_empleados: numero_empleados})
     })
  }
 }
-
-
- // CREA LISTADO DE CLIENTES Y LO ENSERTA EN EL DOM PARTIENDO DE LA APP
 window.addEventListener("load", function(event){
+
+    // CREA LISTADO DE CLIENTES Y LO ENSERTA EN EL DOM PARTIENDO DE LA APP
+ 
     fetch(`${host}/clientes`)
     .then(function(response){
         return response.json();
