@@ -23,7 +23,7 @@ function registro_nuevos_clientes() {
     headers: {
         "Content-Type": "application/json"
     },
-    
+
     body: JSON.stringify({
         razon_social: razon_social, 
         cif: cif, sector: sector, 
@@ -32,10 +32,10 @@ function registro_nuevos_clientes() {
     })
  }
 }
-window.addEventListener("load", function(event){
 
-    // CREA LISTADO DE CLIENTES Y LO ENSERTA EN EL DOM PARTIENDO DE LA APP
- 
+
+    // CREA LISTADO DE CLIENTES Y LO INSERTA EN EL DOM PARTIENDO DE LA APP
+window.addEventListener("load", function(event){
     fetch(`${host}/clientes`)
     .then(function(response){
         return response.json();

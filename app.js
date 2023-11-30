@@ -24,7 +24,7 @@ connection.connect(function(error) {
 /* === >>> FUNCIONES UTILES */
 function handleSQLError(response, error, result, callback) {
     if (error) {
-        response.static(400).send(`error ${error.messa}`);
+        response.status(400).send(`error ${error.message}`);
         return;
     }
     callback(result);
@@ -150,7 +150,7 @@ app.get("/clientes", function(request, response){
 
             for (let i=0; i < result.length; i++ ) {
                 clientes[i] = result[i];
-                console.log(result[i].id)
+                console.log(result[i].id);
             }
             
             response.send(clientes);
