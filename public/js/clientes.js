@@ -33,7 +33,6 @@ function registro_nuevos_clientes() {
  }
 }
 
-
     // CREA LISTADO DE CLIENTES Y LO INSERTA EN EL DOM PARTIENDO DE LA APP
 window.addEventListener("load", function(event){
     fetch(`${host}/clientes`)
