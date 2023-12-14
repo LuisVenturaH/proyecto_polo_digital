@@ -71,9 +71,6 @@ app.get('/eventos/:idEvento', function(request, response) {
 app.post('/login', function(request, response) {
     const email = request.body.email;
     const password = request.body.password;
-    const modoNuevo = `select * from usuarios where email = "${email}" and password = "${password}"`;
-
-    console.log(modoNuevo);
 
     connection.query(`select * from usuarios where email = "${email}" and password = "${password}"`, function(error, result, fields) {
     handleSQLError(response, error, result, function(result){
@@ -87,7 +84,7 @@ app.post('/login', function(request, response) {
     })
  }) 
 })
-// <<===== --------------------  TERMINA Endpoint para LOGIN ----------------------===>>>>>
+
 
 
 
