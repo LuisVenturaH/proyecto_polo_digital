@@ -1,53 +1,65 @@
-const express = require("express"); // Indicamos cual es el paquete que usará, en este caso el express
-const mysql = require("mysql2");    // Esto es para acceder a la carpeta de mysql y sus funciones
+const host = "http://localhost:8000";
+const {MongoClient,} = require("mongodb");
+const express = require("express");
 const app = express();
-
-app.use(express.static('public')); // Indicamos que usará archivos públicos, estáticos
-app.use(express.json());
-
-// Crear conexión MySQL
-const connection = mysql.createConnection({ // Esyto conecta la base de datos que tengamos creada en mysql
-    host: "localhost",  // Host local asignado
-    user: "root",   // usuario es root
-    password: "Lv++2023+",  // Contraseña dada
-    database: "polo_digital" // Se Conecta a la base de datos que le asignemos. 
-});
-
-// Conectar con MySQL
-connection.connect(function(error) {
-    if (error) { 
-    return console.error(`error: ${error.message}`)
-}
-    console.log("Conectado a MySQL");
-});
-
-/* === >>> FUNCIONES UTILES */
-function handleSQLError(response, error, result, callback) {
-    if (error) {
-        response.status(400).send(`error ${error.message}`);
-        return;
-    }
-    callback(result);
-}
-
-/* <TERMINA FUNCIONES UTILIES <==== */
+const mongoUrl = "mongodb://127.0.0.1:27017";
+const mongoClient = new MongoClient(mongoUrl);
+let mongoDB;
 
 
 // **************************** APERTURA ENDPOINT PARA INDEX ***************************
 
-app.get(`/carrusel`, function(request, response) {
-    connection.query("select * from eventos", function(error, result, fields){
-        handleSQLError(response, error, result, function(result){
-            let total = request.query.total;
-            let eventos = [];
+// ENDPOINT CARRUSEL
+app.get(`/carrusel`, async function(request, response) {
+    try{
+        const total = request.query.total;
+        const collection = mongoDB.collection("eventos");
+        const result = await collection.find().toArray();
+        let eventos = [];
 
-            for (let i=0; i < total; i++ ) {
-                eventos[i] = result[i];
-            }
-            response.send(eventos);
-        })
-    })
+        for (let i = 0; i < total; i++){
+            eventos[i] = result[i];
+        }
+        console.log(eventos[i])
+        response.send(eventos);
+    }
+    catch (error){
+        response.status(400).send(`error: ${error.message}`);
+    }
 })
+
+// ============>>>>>>>>>>>>><< ESTA ES UNA VERSION CHATGPT
+// app.get('/carrusel', async function(request, response) {
+//     try {
+//         const total = parseInt(request.query.total, 10); // Asegúrate de convertir 'total' a un número entero
+//         const collection = mongoDB.collection('eventos');
+//         const result = await collection.find().toArray();
+
+//         if (isNaN(total) || total < 1) {
+//             response.status(400).send('La cantidad total debe ser un número entero positivo.');
+//             return;
+//         }
+
+//         if (total > result.length) {
+//             response.status(400).send('La cantidad total solicitada supera el número de eventos disponibles.');
+//             return;
+//         }
+
+//         let eventos = [];
+
+//         for (let i = 0; i < total; i++) {
+//             eventos[i] = result[i];
+//         }
+
+//         console.log(eventos); // Cambiado el lugar del console.log para que se ejecute dentro del bucle
+//         response.send(eventos);
+//     } catch (error) {
+//         response.status(500).send(`Error: ${error.message}`);
+//     }
+// });
+// ============>>>>>>>>>>>>> TERMINA LA VERSION CHATGPT
+
+
 
 app.get('/eventos/:idEvento', function(request, response) {
     const idEvento = request.params.idEvento;
@@ -58,6 +70,7 @@ app.get('/eventos/:idEvento', function(request, response) {
         response.send({});
        } else {
         response.send(result[0]);
+     
        } 
       })
     });
@@ -251,7 +264,23 @@ app.get(`/todos_eventos`, function(request, response) {
 // <<===== --------------------  TERMINA Endpoint para TODOS LOS EVENTOS ----------------------===>>>>>
 
 
-// <<===== --------------------  TERMINA FUNCION ARRANQUE MYSQL ----------------------===>>>>>
-app.listen(8000, function() {       // Indicamos en qué puerto lo hemos creados
-    console.log('server up and running!!!')
-});
+
+// ******************* FUNCION MAIN ******************** \\
+async function main(){
+    try {
+        // Conectar con MongoDB
+        await mongoClient.connect();
+        console.log("Conectado con MongoDB!!");
+
+         // Aquí colocamos las funciones a ejecutar desde MongoDB
+       
+        mongoDatabase = mongoClient.db("polo_digital");
+
+    }catch(error){
+        console.error(error);
+    } finally{
+        await mongoClient.close();
+    }
+}
+
+main();
